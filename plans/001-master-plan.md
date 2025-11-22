@@ -9,22 +9,22 @@
     *   Создать `requirements.txt` с зависимостями (`aiogram`, `tortoise-orm`, `aerich`, `python-dotenv`).
     *   Создать `.env.example` и `.env` (добавить в `.gitignore`).
 2.  Создать структуру проекта согласно `docs/tech.md`:
-    *   `database/`, `handlers/`, `services/`.
+    *   `src/vibe_tracker_bot/database/`, `src/vibe_tracker_bot/handlers/`, `src/vibe_tracker_bot/services/`.
 
 ### Этап 2: База данных (Tortoise ORM)
-3.  Реализовать модели данных в `database/models.py`:
+3.  Реализовать модели данных в `src/vibe_tracker_bot/database/models.py`:
     *   `User` (telegram_id, username, created_at).
     *   `MoodLog` (user FK, value, note, created_at).
-4.  Настроить инициализацию БД в `database/core.py`.
+4.  Настроить инициализацию БД в `src/vibe_tracker_bot/database/core.py`.
 5.  Настроить и инициализировать `aerich` (миграции):
     *   Создать конфигурацию `aerich.ini` (или через pyproject).
     *   Сгенерировать и применить первую миграцию (`init-db`).
 
 ### Этап 3: Базовая логика бота
-6.  Создать точку входа `main.py`:
+6.  Создать точку входа `src/vibe_tracker_bot/main.py`:
     *   Настройка `Bot` и `Dispatcher`.
     *   Подключение жизненного цикла БД (startup/shutdown).
-7.  Реализовать `handlers/common.py`:
+7.  Реализовать `src/vibe_tracker_bot/handlers/common.py`:
     *   Создать `Router`.
     *   Зарегистрировать хендлер `/start` через роутер.
     *   Логика регистрации пользователя (создание записи в таблице `User`, если нет).
@@ -33,7 +33,7 @@
 ### Этап 4: Функционал трекинга (Tracking)
 8.  Реализовать клавиатуры:
     *   Инлайн-клавиатура с оценками 1-10.
-9.  Реализовать `handlers/tracking.py`:
+9.  Реализовать `src/vibe_tracker_bot/handlers/tracking.py`:
     *   Создать `Router`.
     *   Команда `/log` (или кнопка "Отметить вайб").
     *   Обработка нажатия на оценку (CallbackQuery).
@@ -42,10 +42,10 @@
     *   Подключить роутер `tracking` в `main.py`.
 
 ### Этап 5: Статистика и сервисы
-10. Реализовать бизнес-логику в `services/stats.py`:
+10. Реализовать бизнес-логику в `src/vibe_tracker_bot/services/stats.py`:
     *   Функция получения записей за последние 7 дней для пользователя.
     *   Расчет среднего значения, поиск лучшего/худшего дня.
-11. Добавить хендлер статистики в `handlers/tracking.py` (или отдельный модуль):
+11. Добавить хендлер статистики в `src/vibe_tracker_bot/handlers/tracking.py` (или отдельный модуль):
     *   Команда `/stats` (регистрация в роутере `tracking`).
     *   Формирование и отправка отчета пользователю.
 

@@ -34,12 +34,15 @@
 ```text
 vibe-bot/
 ├── .env                # Токены и секреты
-├── main.py             # Точка входа (запуск бота и БД)
-├── database/
-│   ├── models.py       # Описание таблиц (Tortoise)
-│   └── core.py         # Инициализация БД
-├── handlers/
-    ├── common.py       # Роутер с базовыми командами (/start, /help)
-    └── tracking.py     # Роутер с логикой трекинга (/log)
-└── services/           # Бизнес-логика (расчет статистики)
+├── requirements.txt
+├── src/
+│   └── vibe_tracker_bot/
+│       ├── main.py             # Точка входа
+│       ├── database/
+│       │   ├── models.py       # Описание таблиц
+│       │   └── core.py         # Инициализация БД
+│       ├── handlers/
+│       │   ├── common.py       # Роутер базовых команд
+│       │   └── tracking.py     # Роутер трекинга
+│       └── services/           # Бизнес-логика
 ```
