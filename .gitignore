@@ -1,9 +1,12 @@
 .env
+.env.*
 __pycache__/
 *.py[cod]
 *$py.class
 db.sqlite3*
 venv/
+.venv/
 .DS_Store
 .idea/
 .vscode/
+*.log
